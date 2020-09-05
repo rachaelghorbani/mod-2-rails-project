@@ -1,7 +1,20 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
+courts = GetTennisCourts.new.get_courts
+courts.each do |court|
+    attributes = {
+        "prop_id" => court["Prop_ID"],
+        "name" => court["Name"],
+        "location" => court["Location"],
+        "phone" => court["Phone"],
+        "courts" => court["Courts"],
+        "indoor_outdoor" => court["Indoor_Outdoor"],
+        "court_type" => court["Tennis_Type"],
+        # "Accessible" => court["accessible"],
+        "info" => court["Info"],
+        # "lat" => court["latitude"],
+        # "lon" => court["longitude"],
+    }
+
+    TennisCourt.create(attributes)
+
+end

@@ -1,0 +1,2 @@
+class TennisCourt < ApplicationRecord
+end
