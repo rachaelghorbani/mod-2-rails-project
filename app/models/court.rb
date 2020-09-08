@@ -30,5 +30,8 @@ after_validation :geocode, if: -> (obj){!obj.latitude.present? and !obj.longitud
         Court.where("prop_id like ?", "%R%")
     end
 
+    def self.search_by_name
+Court.where("name like ?", "%#{params[:name]}%")
+    end
 end
 

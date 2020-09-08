@@ -6,5 +6,5 @@
 <%= @player.address %><br>
 <%= @player.profile_picture %><br>
 <% @player.reservations.each do |reservation| %>
-    <%= reservation.date %>
+    <%= reservation.date %> | <%= button_to "Delete Reservation", reservation_path(reservation), method: "delete" %>
 <% end %>
