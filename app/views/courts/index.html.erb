@@ -1,17 +1,18 @@
 <%= form_with(url: courts_path, method: :get, local: true) do |f|%>
-<%= f.select :borough, ["Bronx", "Brooklyn", "Manhattan", "Staten Island", "Queens", "All Boroughs"]%>
-<%= f.submit "Select" %>
+    <%= f.select :borough, ["Bronx", "Brooklyn", "Manhattan", "Staten Island", "Queens", "All Boroughs"]%>
+    <%= f.submit "Select" %>
 <% end %>
-
-<% @courts.each do |court| %>
-<%= link_to court.name, court_path(court) %><br>
-<% end %>
-
 
 <%= form_with(url: courts_path, method: :get, local: true) do |f| %>
-<%= f.text_field :court_name %>
-<%= f.submit "Search" %>
+    <%= f.text_field :court_name %>
+    <%= f.submit "Search" %>
 <% end%>
 
-
 <%= button_to "All Courts", courts_path, method: "get" %>
+
+<% @courts.each do |court| %>
+    <%= link_to court.name, court_path(court) %><br>
+<% end %>
+
+
+
