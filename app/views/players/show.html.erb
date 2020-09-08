@@ -1,0 +1,10 @@
+<%= @player.username %><br>
+<%= @player.password %><br> <%#should we do this?%>
+<%= @player.name %><br>
+<%= @player.age %><br>
+<%= @player.level %><br>
+<%= @player.address %><br>
+<%= @player.profile_picture %><br>
+<% @player.reservations.each do |reservation| %>
+    <%= reservation.date %>
+<% end %>

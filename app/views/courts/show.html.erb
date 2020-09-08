@@ -1,0 +1,27 @@
+
+<%= @court.name %><br>
+<%= @court.location %><br>
+<%= @court.phone %><br>
+<%= @court.number_of_courts %><br>
+<%= @court.indoor_outdoor %><br>
+<%= @court.court_type %><br>
+
+<% if @court.info != "" %>
+    <%= @court.info %>
+<% end%>
+
+<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=400x300&markers=size:small%7Ccolor:red%7C#{@court.latitude},#{@court.longitude}&key=#{ENV["GOOGLE_API_KEY"]}", alt: "Map" %>
+
+<%# semantic_form_for @court do |f| %>
+<%# f.inputs :name %>
+
+<%= semantic_form_for @reservation do |f| %>
+<%= f.inputs do %>
+<%= f.input :court_id, :as => :select, :collection => { @court.name => @court.id } %>
+<%= f.input :player_id, :as => :select, :collection => { @current_player.name => @current_player.id } %>
+<%= f.input :date %>
+<% end %>
+<%= f.action :submit %>
+<% end %>
+
+

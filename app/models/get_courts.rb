@@ -2,7 +2,7 @@ require 'net/http'
 require 'open-uri'
 require 'json'
 
-class GetTennisCourts
+class GetCourts
     
     URL = "https://www.nycgovparks.org/bigapps/DPR_Tennis_001.json"
     

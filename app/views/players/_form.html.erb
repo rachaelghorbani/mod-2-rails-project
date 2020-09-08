@@ -1,0 +1,32 @@
+<% if flash[:errors] %>
+    <% flash[:errors].each do |error|%>
+            <%= error %>
+    <% end%>
+<% end %>
+
+<%= form_for @player do |f| %>
+        
+        <%= f.label  :username %>
+        <%= f.text_field  :username %>
+        
+        <%= f.label  :password %>
+        <%= f.text_field  :password %>
+        
+        <%= f.label  :name %>
+        <%= f.text_field  :name %>
+        
+        <%= f.label  :age %>
+        <%= f.number_field  :age %>
+
+        <%= f.label  :level%>
+        <%= f.number_field :level %>
+        
+        <%= f.label  :address %>
+        <%= f.text_field  :address %>
+        
+        <%= f.label  :profile_picture %>
+        <%= f.text_field :profile_picture %>
+
+        <%= f.submit "Create Pofile" %>
+
+<% end %>
