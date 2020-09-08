@@ -17,9 +17,11 @@ class CourtsController < ApplicationController
             @courts = Court.order(:name)
         end
 
-        # if params[:court_name]
-        #     @court = Court.where("name like ?", "%#{params[:court_name]}%")
-        # end
+        if params[:court_name]
+            @courts = Court.where("name like ?", "%#{params[:court_name]}%")
+        else 
+            @courts = Court.all
+        end
         
     end
 
