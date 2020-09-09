@@ -24,7 +24,7 @@ class PlayersController < ApplicationController
 
     def create
         @player = Player.create(player_params)
-        byebug
+        #byebug
             if @player.valid?
                 session[:player_id] = @player.id
                 redirect_to player_path(@player)
