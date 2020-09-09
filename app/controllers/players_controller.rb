@@ -54,6 +54,14 @@ end
 
     end
 
+    def add_friend
+    
+        # @player = Player.find(session[:player_id])
+        # friend = Player.find(params[:id])
+        # @player.followees << friend
+        redirect_to players_path
+    end
+
     private
 
     def player_params

@@ -6,6 +6,6 @@
 <% end %>
 
 <% @players.each do |player| %>
-<%= link_to player.username, player_path(player) %>
+<%= link_to player.username, player_path(player)%> <%=button_to "Add Friend", add_friend_path, params: {id: player.id }%>
 <% end%>
 
