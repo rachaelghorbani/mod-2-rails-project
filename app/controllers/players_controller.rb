@@ -1,7 +1,7 @@
 class PlayersController < ApplicationController
 
     def index  
-        byebug
+        # byebug
         @current_player = Player.find(session[:player_id]) 
         if params[:distance] && params[:distance] == "1 Mile"
             @players =  @current_player.nearbys(1)
@@ -9,6 +9,9 @@ class PlayersController < ApplicationController
             @players = @current_player.nearbys(5)
         elsif params[:distance] && params[:distance] == "10 Miles"
             @players = @current_player.nearbys(10)
+        elsif params[:player_level]
+            player_level = params[:player_level]
+            @players = Player.player_level(player_level)
         else
             @players = Player.all
         end   
@@ -58,7 +61,7 @@ class PlayersController < ApplicationController
     private
 
     def player_params
-        params.require(:player).permit(:name, :age, :level, :username, :password, :profile_picture, :address, :latitude, :longitude)
+        params.require(:player).permit(:name, :age, :level, :username, :password, :profile_picture, :address, :latitude, :longitude, :email)
     end
     
 end

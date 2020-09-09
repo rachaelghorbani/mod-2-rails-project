@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_08_215337) do
+ActiveRecord::Schema.define(version: 2020_09_09_150440) do
 
   create_table "courts", force: :cascade do |t|
     t.text "prop_id"
@@ -27,6 +27,13 @@ ActiveRecord::Schema.define(version: 2020_09_08_215337) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "friendships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followee_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "players", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
@@ -39,6 +46,7 @@ ActiveRecord::Schema.define(version: 2020_09_08_215337) do
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "latitude"
     t.decimal "longitude"
+    t.string "email"
   end
 
   create_table "reservations", force: :cascade do |t|
