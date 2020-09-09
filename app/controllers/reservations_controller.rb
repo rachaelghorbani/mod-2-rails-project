@@ -11,7 +11,7 @@ class ReservationsController < ApplicationController
             redirect_to player_path(@reservation.player_id)
         else
             flash[:errors] = @reservation.errors.full_messages
-            redirect_to new_reservation_path
+            redirect_to court_path(@reservation.court_id)
         end
     end
 

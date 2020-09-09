@@ -12,8 +12,6 @@
 
 <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=400x300&markers=size:small%7Ccolor:red%7C#{@court.latitude},#{@court.longitude}&key=#{ENV["GOOGLE_API_KEY"]}", alt: "Map" %>
 
-<%# semantic_form_for @court do |f| %>
-<%# f.inputs :name %>
 
 <%= semantic_form_for @reservation do |f| %>
 <%= f.inputs do %>
@@ -23,5 +21,26 @@
 <% end %>
 <%= f.action :submit %>
 <% end %>
+
+<br>
+
+<% @court.reviews.each do |review| %>
+<p><%= review.rating %> | <%= review.review %> | <%= review.player.username %></p>
+<% end %>
+
+
+
+<br>
+<%= semantic_form_for @review do |f| %>
+<%= f.inputs do  %>
+<%= f.input :court_id, :as => :select, :collection => { @court.name => @court.id } %>
+<%= f.input :player_id, :as => :select, :collection => { @current_player.name => @current_player.id } %>
+<%= f.input :rating, :as => :select, :collection => ["1", "2", "3", "4", "5" ] %>
+<%= f.input :review, :as => :text %>
+<% end %>
+<%= f.action :submit %>
+<% end %>
+
+
 
 

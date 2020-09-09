@@ -1,8 +1,9 @@
+<p>Search By Borough:</p>
 <%= form_with(url: courts_path, method: :get, local: true) do |f|%>
-    <%= f.select :borough, ["Bronx", "Brooklyn", "Manhattan", "Staten Island", "Queens", "All Boroughs"]%>
+    <%= f.select :borough, ["Select A Borough:", "Bronx", "Brooklyn", "Manhattan", "Staten Island", "Queens", "All Boroughs"]%>
     <%= f.submit "Select" %>
 <% end %>
-
+<p>Search By Name:</p>
 <%= form_with(url: courts_path, method: :get, local: true) do |f| %>
     <%= f.text_field :court_name %>
     <%= f.submit "Search" %>
@@ -13,19 +14,18 @@
       <%# end %>
       <!-- /datalist -->
 <% end %>
-
-
+<p>Search For Nearby Courts:</p>
+<%= form_with(url: courts_path, method: :get, local: true) do |f|%>
+    <%= f.select :distance, ["Select A Distance:", "1 Mile", "2 Miles", "5 Miles",]%>
+    <%= f.submit "Select" %>
+<% end %>
+<%#  <%= button_to "Find Nearby Courts", courts_path, method: "get", params: { nearby: params[:nearby] } %>
 
 <%= button_to "All Courts", courts_path, method: "get" %>
 
 <% @courts.each do |court| %>
-    <%= link_to court.name, court_path(court) %><br>
+    <p><%= link_to court.name, court_path(court) %> </p>
 <% end %>
 
-<!--
-<%= button_to "Find Nearby Courts", courts_path, method: "get", params: { nearby: params[:nearby] } %>
-test
 
-<% @judys.each do |judy| %>
-<%= judy.name %>
-<% end%> -->
+

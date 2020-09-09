@@ -11,6 +11,7 @@ after_validation :geocode, if: -> (obj){!obj.latitude.present? and !obj.longitud
 
 ##methods for sorting by bourough
 
+    
     def self.bronx
         Court.where("prop_id like ?", "%X%")
     end
