@@ -2,7 +2,9 @@ class ReservationsController < ApplicationController
     before_action :find_reservation, only: [:edit, :update, :destroy]
     
     def new
+        @current_player = Player.find_by(id: session[:player_id])
         @reservation = Reservation.new
+        @court = Court.find(params[:id])
     end
 
     def create

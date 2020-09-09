@@ -1,11 +1,23 @@
-<% if flash[:error] %>
-    <%= flash[:error] %>
-<% end %>
+<!-- component -->
+<div class="w-full h-screen flex">
+    <%= image_tag "us_open_court.jpg", class:"object-cover object-bottom h-screen w-7/12" %>
+    <div class="bg-white flex flex-col justify-center items-center w-5/12 shadow-lg">
+      <h1 class="text-3xl font-bold text-red-500 mb-2">LOGIN</h1>
+      <div class="w-1/2 text-center">
 
-<%= form_for :session, url: login_path do |f| %>
-<%= f.label :username %>
-<%= f.text_field :username %>
-<%= f.label :password %>
-<%= f.password_field :password %>
-<%= f.submit "Login" %>
-<% end%>
+        <% if flash[:error] %>
+            <%= flash[:error] %>
+        <% end %>
+
+       <%= form_for :session, url: login_path do |f| %>
+       <%= f.label :username %>
+         <%= f.text_field :username, class: "shadow-md border w-full h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded" %>
+        <%= f.label :password %>
+        <%= f.password_field :password, class:"shadow-md border w-full h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded" %> 
+         <%= f.submit "Sign In", class:"bg-orange-500 hover:bg-orange-600 text-white px-3 py-1 rounded text-lg focus:outline-none shadow" %>
+         <% end %>
+      </div>
+
+    </div>
+  </div>
+

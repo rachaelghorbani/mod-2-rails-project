@@ -1,1 +1,38 @@
-<%= render 'form' %>
+
+<div class="w-full h-screen flex">
+    <%= image_tag "clay_courts.jpg", class:"object-cover object-center h-screen w-7/12" %>
+    <div class="bg-white flex flex-col justify-center items-center w-5/12 shadow-lg">
+      <h1 class="text-3xl font-bold text-orange-500 mb-2">SIGN UP</h1>
+      <div class="w-1/2 text-center">
+
+        <% if flash[:error] %>
+            <%= flash[:error] %>
+        <% end %>
+
+       <%= form_for @player do |f| %>
+       <%= f.label :username %>
+         <%= f.text_field :username, class: "shadow-md border w-full h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded" %>
+
+        <%= f.label :password %>
+        <%= f.password_field :password, class:"shadow-md border w-full h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded" %> 
+
+        <%= f.label :name %>
+        <%= f.text_field :name, class:"shadow-md border w-full h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded" %> 
+
+        <%= f.label :email %>
+        <%= f.text_field :email, class:"shadow-md border w-full h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded" %> 
+
+        <%= f.label :level %>
+        <%= f.number_field :level, step: :any, placeholder: "1.0 - 5.0", class:"shadow-md border w-full h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded" %>
+
+        <%= f.label :address %>
+        <%= f.text_area :address, class:"shadow-md border w-full h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded" %> 
+    
+         <%= f.submit "Create Profile", class:"bg-orange-500 hover:bg-orange-600 text-white px-3 py-1 rounded text-lg focus:outline-none shadow" %>
+         <% end %>
+      </div>
+
+    </div>
+  </div>
+
+  

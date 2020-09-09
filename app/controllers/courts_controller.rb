@@ -1,5 +1,6 @@
 class CourtsController < ApplicationController
     def index
+        #byebug
         @current_player = Player.find(session[:player_id])
         #byebug
         # if params[:nearby] && params[:nearby] == ""

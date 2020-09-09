@@ -1,10 +1,9 @@
 <%= @player.username %><br>
-<%= @player.password %><br> <%#should we do this?%>
 <%= @player.name %><br>
 <%= @player.age %><br>
 <%= @player.level %><br>
-<%= @player.address %><br>
 <img src="<%= @player.profile_picture %>" alt="<% @player.profile_picture%>" class="show-img">
+
 <% @player.reservations.each do |reservation| %>
     <p>Park: <%= reservation.court.name %></p>  
     <p>Address: <%= reservation.court.location %></p> 

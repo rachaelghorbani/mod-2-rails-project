@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'home#homepage'
   get '/login', to:'sessions#new', as: 'login'
   post '/login', to: 'sessions#login'
+  delete '/logout/:id', to: 'sessions#logout', as: 'logout'
 
   resources :reservations
   resources :players
