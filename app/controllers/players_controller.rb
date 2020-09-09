@@ -1,7 +1,16 @@
 class PlayersController < ApplicationController
 
-    def index
-        @players = Player.all
+    def index  
+        @current_player = Player.find(session[:player_id]) 
+        if params[:distance] && params[:distance] == "1 Mile"
+            @players =  @current_player.nearbys(1)
+        elsif params[:distance] && params[:distance] == "5 Miles"
+            @players = @current_player.nearbys(5)
+        elsif params[:distance] && params[:distance] == "10 Miles"
+            @players = @current_player.nearbys(10)
+        else
+            @players = Player.all
+        end   
     end
 
     def show
@@ -15,6 +24,7 @@ class PlayersController < ApplicationController
 
     def create
         @player = Player.create(player_params)
+        byebug
             if @player.valid?
                 session[:player_id] = @player.id
                 redirect_to player_path(@player)

@@ -8,3 +8,7 @@
 <% @player.reservations.each do |reservation| %>
     <%= reservation.date %> | <%= button_to "Delete Reservation", reservation_path(reservation), method: "delete" %>
 <% end %>
+
+
+
+

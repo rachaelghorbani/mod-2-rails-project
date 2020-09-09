@@ -1,3 +1,11 @@
+
+<p>Find Nearby Players to Connect With!</p>
+<%= form_with(url: players_path, method: :get, local: true) do |f|%>
+    <%= f.select :distance, ["1 Mile", "5 Miles", "10 Miles", "All Players"]%>
+    <%= f.submit "Select" %>
+<% end %>
+
 <% @players.each do |player| %>
 <%= link_to player.username, player_path(player) %>
 <% end%>
+
