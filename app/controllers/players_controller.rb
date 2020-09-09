@@ -1,4 +1,5 @@
 class PlayersController < ApplicationController
+    before_action :find_player, only: [:show, :edit, :update, :destroy]
 
     def index  
         @current_player = Player.find(session[:player_id]) 
@@ -15,7 +16,7 @@ class PlayersController < ApplicationController
 
     def show
         #@player = Player.find(@current_player)
-        @player = Player.find(params[:id])
+        #@player = Player.find(params[:id])
     end
 
     def new
@@ -35,11 +36,11 @@ class PlayersController < ApplicationController
     end
 
     def edit
-        @player = Player.find(parans[:id])
+        #@player = Player.find(parans[:id])
     end
 
     def update
-        @player = Player.find(params[:id])
+        #@player = Player.find(params[:id])
         if @player.update(player_params)
             redirect_to player_path(player)
         else
@@ -49,7 +50,7 @@ end
     end
 
     def destroy
-        @player = Player.find(params[:id])
+        #@player = Player.find(params[:id])
         @player.destroy
 
     end
@@ -59,4 +60,9 @@ end
     def player_params
         params.require(:player).permit(:name, :age, :level, :username, :password, :profile_picture, :address, :latitude, :longitude)
     end
+
+    def find_player
+        @player = Player.find(params[:id])
+    end
+
 end

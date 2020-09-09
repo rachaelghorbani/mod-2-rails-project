@@ -1,4 +1,6 @@
 class ReservationsController < ApplicationController
+    before_action :find_reservation, only: [:edit, :update, :destroy]
+    
     def new
         @reservation = Reservation.new
     end
@@ -14,19 +16,16 @@ class ReservationsController < ApplicationController
     end
 
     def edit
-        @reservation = Reservation.find(params[:id])
     end
 
     def update
-        @reservation = Reservation.find(params[:id])
         @reservation.update(reservations_params)
         redirect_to player_path(@reservation.player)
     end
 
     def destroy
-        reservation = Reservation.find(params[:id])
-        player = reservation.player_id
-        reservation.destroy
+        player = @reservation.player_id
+        @reservation.destroy
         redirect_to player_path(player)
     end
 
@@ -35,4 +34,9 @@ class ReservationsController < ApplicationController
     def reservations_params
         params.require(:reservation).permit(:player_id, :court_id, :date)
     end
+
+    def find_reservation
+        @reservation = Reservation.find(params[:id])
+    end
+
 end
