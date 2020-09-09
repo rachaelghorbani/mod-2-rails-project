@@ -1,6 +1,11 @@
 class CourtsController < ApplicationController
     def index
+        @current_player = Player.find(session[:player_id])
         #byebug
+        if params["nearby"] && params[:nearby] == ""
+            @judys = Court.near([@current_player.latitude, @current_player.longitude], 1, units: :mi)
+        end
+
         if params[:borough] && params[:borough] == "Bronx"
             @courts = Court.bronx.order(:name) 
         elsif params[:borough] && params[:borough] == "Brooklyn"
