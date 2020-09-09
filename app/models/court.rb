@@ -8,7 +8,14 @@ has_many :reviews
 geocoded_by :location
 after_validation :geocode, if: -> (obj){!obj.latitude.present? and !obj.longitude.present?}
 
-
+# self.reviews.map do |review|
+            
+# end
+    def average_rating
+        count = self.reviews.count
+        sum = self.reviews.sum { |review| review.rating }
+        (sum/count.to_f).round(2)   
+    end
 ##methods for sorting by bourough
 
     

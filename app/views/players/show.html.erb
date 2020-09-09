@@ -12,7 +12,12 @@
     <p><%= button_to "Delete Reservation", reservation_path(reservation), method: "delete" %></p>
     <%= button_to "Edit Reservation", edit_reservation_path(reservation), method: "get" %>
 <% end %>
-
-
+<br>
+<% @player.reviews.each do |review| %>
+    <p>Court: <%= review.court.name %></p>  
+    <p>Rating: <%= review.rating %></p> 
+    <p>Review: <%= review.review %></p> 
+    <%= button_to "Edit Review", edit_review_path(review), method: "get" %>
+<% end %>
 
 

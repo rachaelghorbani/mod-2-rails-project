@@ -1,4 +1,5 @@
 class PlayersController < ApplicationController
+    before_action :find_player, only: [:show, :edit, :update, :destroy]
 
     def index  
         # byebug
@@ -19,7 +20,7 @@ class PlayersController < ApplicationController
 
     def show
         #@player = Player.find(@current_player)
-        @player = Player.find(params[:id])
+        # @player = Player.find(params[:id])
     end
 
     def new
@@ -39,21 +40,21 @@ class PlayersController < ApplicationController
     end
 
     def edit
-        @player = Player.find(params[:id])
+        # @player = Player.find(params[:id])
     end
 
     def update
-        @player = Player.find(params[:id])
+        # @player = Player.find(params[:id])
         if @player.update(player_params)
-            redirect_to player_path(player)
+            redirect_to player_path(@player)
         else
             flash[:errors] = @player.errors.full_messages
-            redirect_to players_path ###where to direct??
+            redirect_to edit_player_path(@player) ###where to direct??
         end
     end
 
     def destroy
-        @player = Player.find(params[:id])
+        # @player = Player.find(params[:id])
         @player.destroy
         redirect_to players_path
     end
@@ -62,6 +63,10 @@ class PlayersController < ApplicationController
 
     def player_params
         params.require(:player).permit(:name, :age, :level, :username, :password, :profile_picture, :address, :latitude, :longitude, :email)
+    end
+
+    def find_player
+        @player = Player.find(params[:id])
     end
     
 end

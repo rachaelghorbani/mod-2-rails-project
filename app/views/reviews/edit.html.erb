@@ -1,0 +1,7 @@
+<%= semantic_form_for @review do |f| %>
+<%= f.inputs do  %>
+<%= f.input :rating, :as => :select, :collection => ["1", "2", "3", "4", "5" ] %>
+<p><%= f.input :review, :as => :text %></p>
+<% end %>
+<%= f.action :submit %>
+<% end %>

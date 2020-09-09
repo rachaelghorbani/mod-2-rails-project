@@ -53,5 +53,24 @@ class CourtsController < ApplicationController
         @review = Review.new
         @current_player = Player.find_by(id: session[:player_id])
     end
+###methods to edit weird courts
+    # def edit
+    #     @court = Court.find(params[:id])
+    # end
+    
+    # def update
+    #     @court = Court.find(params[:id])
+    #    if @court.update(court_params)
+    #     redirect_to court_path(@court)
+    #    else
+    #     redirect_to courts_path
+    #     end
+    # end
+
+    # private
+
+    # def court_params
+    #     params.require(:court).permit(:prop_id, :name,:location, :phone, :number_of_courts, :indoor_outdoor, :court_type, :info, :latitude, :longitude)
+    # end
 
 end
