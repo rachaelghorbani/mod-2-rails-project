@@ -1,6 +1,7 @@
 class PlayersController < ApplicationController
 
     def index  
+        byebug
         @current_player = Player.find(session[:player_id]) 
         if params[:distance] && params[:distance] == "1 Mile"
             @players =  @current_player.nearbys(1)
@@ -24,7 +25,7 @@ class PlayersController < ApplicationController
 
     def create
         @player = Player.create(player_params)
-        byebug
+        #byebug
             if @player.valid?
                 session[:player_id] = @player.id
                 redirect_to player_path(@player)
@@ -35,7 +36,7 @@ class PlayersController < ApplicationController
     end
 
     def edit
-        @player = Player.find(parans[:id])
+        @player = Player.find(params[:id])
     end
 
     def update
@@ -45,13 +46,13 @@ class PlayersController < ApplicationController
         else
             flash[:errors] = @player.errors.full_messages
             redirect_to players_path ###where to direct??
-end
+        end
     end
 
     def destroy
         @player = Player.find(params[:id])
         @player.destroy
-
+        redirect_to players_path
     end
 
     private
@@ -59,4 +60,5 @@ end
     def player_params
         params.require(:player).permit(:name, :age, :level, :username, :password, :profile_picture, :address, :latitude, :longitude)
     end
+    
 end

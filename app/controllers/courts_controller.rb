@@ -1,6 +1,7 @@
 class CourtsController < ApplicationController
     def index
-        #byebug
+        #@courts = Court.all
+        # byebug
         if params[:borough] && params[:borough] == "Bronx"
             @courts = Court.bronx.order(:name) 
         elsif params[:borough] && params[:borough] == "Brooklyn"
@@ -13,6 +14,8 @@ class CourtsController < ApplicationController
             @courts = Court.queens.order(:name) 
         elsif params[:borough] && params[:borough] == "All Boroughs"
             @courts = Court.order(:name)
+        elsif params[:court_name]
+            @courts = Court.where("name like ?", "%#{params[:court_name]}%")
         elsif 
             @courts = Court.order(:name)
         end
@@ -23,11 +26,11 @@ class CourtsController < ApplicationController
         #     @courts = Court.all
         # end
         
-        if params[:court_name]
-            @courts = Court.search_by_name(params[:court_name])
-        else 
-            @courts = Court.all
-        end
+        # if params[:court_name]
+        #     @courts = Court.search_by_name(params[:court_name])
+        # else 
+        #     @courts = Court.all
+        # end
     end
 
     def show

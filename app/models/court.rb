@@ -8,13 +8,6 @@ has_many :reviews
 geocoded_by :location
 after_validation :geocode, if: -> (obj){!obj.latitude.present? and !obj.longitude.present?}
 
-include PgSearch
-pg_search_scope :search_by_name, agains:[:name],
-using: {
-    tsearch: {
-        prefix: true
-    }
-}
 
 ##methods for sorting by bourough
 
