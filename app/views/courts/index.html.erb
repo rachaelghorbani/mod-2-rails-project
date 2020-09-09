@@ -21,3 +21,11 @@
 <% @courts.each do |court| %>
     <%= link_to court.name, court_path(court) %><br>
 <% end %>
+
+<!--
+<%= button_to "Find Nearby Courts", courts_path, method: "get", params: { nearby: params[:nearby] } %>
+test
+
+<% @judys.each do |judy| %>
+<%= judy.name %>
+<% end%> -->
