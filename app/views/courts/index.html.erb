@@ -6,7 +6,15 @@
 <%= form_with(url: courts_path, method: :get, local: true) do |f| %>
     <%= f.text_field :court_name %>
     <%= f.submit "Search" %>
-<% end%>
+    <%# f.text_field :court_name, list: "courts autocomplete" %>
+    <!-- datalist id= "courts autocomplete"-->
+    <%# Court.all.each do |court| %> 
+    <!-- option value= "<%# court.name %>"-->
+      <%# end %>
+      <!-- /datalist -->
+<% end %>
+
+
 
 <%= button_to "All Courts", courts_path, method: "get" %>
 

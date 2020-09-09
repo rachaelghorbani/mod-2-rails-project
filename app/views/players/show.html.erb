@@ -6,7 +6,11 @@
 <%= @player.address %><br>
 <%= @player.profile_picture %><br>
 <% @player.reservations.each do |reservation| %>
-    <%= reservation.date %> | <%= button_to "Delete Reservation", reservation_path(reservation), method: "delete" %>
+    <p>Park: <%= reservation.court.name %></p>  
+    <p>Address: <%= reservation.court.location %></p> 
+    <p>Scheduled: <%= reservation.date %></p> 
+    <p><%= button_to "Delete Reservation", reservation_path(reservation), method: "delete" %></p>
+    <%= button_to "Edit Reservation", edit_reservation_path(reservation), method: "get" %>
 <% end %>
 
 
