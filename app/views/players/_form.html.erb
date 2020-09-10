@@ -1,35 +1,30 @@
-<% if flash[:errors] %>
-    <% flash[:errors].each do |error|%>
-            <%= error %>
-    <% end%>
-<% end %>
+ <% if flash[:error] %>
+            <%= flash[:error] %>
+        <% end %>
 
-<%= form_for @player do |f| %>
-        
-        <%= f.label  :username %>
-        <%= f.text_field  :username %>
-        
-        <%= f.label  :password %>
-        <%= f.password_field  :password %>
-        
-        <%= f.label  :name %>
-        <%= f.text_field  :name %>
+       <%= form_for @player do |f| %>
+       <%= f.label :username %>
+         <%= f.text_field :username, class: "shadow-md border w-full h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded" %>
+
+        <%= f.label :password %>
+        <%= f.password_field :password, class:"shadow-md border w-full h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded" %> 
+
+        <%= f.label :name %>
+        <%= f.text_field :name, class:"shadow-md border w-full h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded" %> 
 
         <%= f.label :email %>
-        <%= f.text_field :email %>
-        
-        <%= f.label  :age %>
-        <%= f.number_field  :age, step: :any %>
+        <%= f.text_field :email, class:"shadow-md border w-full h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded" %> 
 
-        <%= f.label  :level%>
-        <%= f.select :level, ["1.0", "2.0", "2.5", "3.0", "3.5", "4.0", "4.5", "5.0"] %>
-        
-        <%= f.label  :address %>
-        <%= f.text_field  :address %>
-        
-        <%= f.label  :profile_picture %>
-        <%= f.text_field :profile_picture %>
+        <%= f.label :level %>
+        <%= f.number_field :level, step: :any, placeholder: "1.0 - 5.0", class:"shadow-md border w-full h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded" %>
 
-        <%= f.submit "Create Pofile" %>
+        <%= f.label :address %>
+        <%= f.text_area :address, class:"shadow-md border w-full h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded" %> 
+    
+        <%= f.submit "Update Profile", class:"bg-orange-500 hover:bg-orange-600 text-white px-3 py-1 rounded text-lg focus:outline-none shadow" %>
+        <% end %>
+      </div>
 
-<% end %>
+    </div>
+  </div>
+

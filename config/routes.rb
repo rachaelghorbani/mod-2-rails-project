@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   delete '/logout/:id', to: 'sessions#logout', as: 'logout'
 
   get '/reserve', to:'reservations#reserve', as: 'reserve'
+  get '/profile/:id', to: 'players#profile', as: 'profile'
 
   resources :reservations
   resources :players

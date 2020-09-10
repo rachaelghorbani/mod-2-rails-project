@@ -9,7 +9,7 @@
         if player && player.authenticate(params[:session][:password])
             session[:player_id] = player.id
             # byebug
-            redirect_to player_path(player)
+            redirect_to profile_path(player)
         else
             flash[:error] = "Username and/or Password Incorrect"
             redirect_to courts_path #login_path

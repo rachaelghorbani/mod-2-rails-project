@@ -1,22 +1,55 @@
-<%= @player.username %><br>
-<%= @player.name %><br>
-<%= @player.age %><br>
-<%= @player.level %><br>
-<img src="<%= @player.profile_picture %>" alt="<% @player.profile_picture%>" class="show-img">
 
-<% @player.reservations.each do |reservation| %>
-    <p>Park: <%= reservation.court.name %></p>  
-    <p>Address: <%= reservation.court.location %></p> 
-    <p>Scheduled: <%= reservation.date %></p> 
-    <p><%= button_to "Delete Reservation", reservation_path(reservation), method: "delete" %></p>
-    <%= button_to "Edit Reservation", edit_reservation_path(reservation), method: "get" %>
-<% end %>
-<br>
-<% @player.reviews.each do |review| %>
-    <p>Court: <%= review.court.name %></p>  
-    <p>Rating: <%= review.rating %></p> 
-    <p>Review: <%= review.review %></p> 
-    <%= button_to "Edit Review", edit_review_path(review), method: "get" %>
-<% end %>
+
+
+<section class="text-gray-700 body-font overflow-hidden mb-6">
+  <div class="container px-5 py-2 mx-auto">
+    <div class="lg:w-4/5 mx-auto flex lg:pl-10 flex-wrap">
+      <div class="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
+        <h2 class="text-sm title-font text-gray-500 tracking-widest">PLAYER</h2>
+        <h1 class="text-gray-900 text-3xl title-font font-medium mb-4"><%= @player.username %></h1>
+        <div class="flex mb-4">
+          <a class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">About</a>
+          <a href="#my_reviews" class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">My Reviews</a>
+          <a href="#my_reservations"class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">My Reservations</a>
+
+        </div>
+        <p class="leading-relaxed mb-4">
+            <% if @player.about != nil || @player.about != "" %>
+                <%= @player.about %>
+            <% end%>
+        </p>
+        <div class="flex border-b border-gray-300 py-2">
+          <span class="text-gray-500 pr-4">Username</span>
+          <span class="ml-auto text-gray-900"><%= @player.username %></span>
+        </div>
+
+        <div class="flex border-b border-gray-300 py-2">
+          <span class="text-gray-500">Name</span>
+          <span class="ml-auto text-gray-900"><%= @player.name %></span>
+        </div>
+
+        <div class="flex border-b border-gray-300 py-2">
+          <span class="text-gray-500">Age</span>
+          <span class="ml-auto text-gray-900"><%= @player.age %></span>
+        </div>
+
+        <div class="flex border-b border-gray-300 py-2">
+          <span class="text-gray-500">Level</span>
+          <span class="ml-auto text-gray-900"><%= @player.level %></span>
+        </div>
+
+          <div class="flex border-b border-gray-300 py-2">
+          <span class="text-gray-500">Email</span>
+          <span class="ml-auto text-gray-900"><%= @player.email %></span>
+        </div>
+   <br>
+      </div>
+    <% if @player.profile_picture != ""%>
+       <image src="<%= @player.profile_picture %> ", alt= "profile picture", class="pl-20" </image>
+    <% end%>
+   
+    </div>
+  </div>
+</section>
 
 

@@ -1,9 +1,22 @@
-<%= semantic_form_for @reservation do |f| %>
-<%= f.inputs do %>
-<%= f.input :court_id, :as => :select, :collection => Hash[Court.all.map{|c| [c.name,c.id]}], :label => "Court"  %>
-<%= f.input :player_id, :as => :select, :collection => { @current_player.name => @current_player.id }, :label => "Player" %>
-<%= f.input :date, :as => :datetime_select, :label => "Date & Time" %>
-<% end %>
-<%= f.action :submit, :method => :post %>
-<% end %>
+<div class="w-full h-screen flex">
+    <%= image_tag "tennis_reflection.jpg", class:"object-cover object-center h-screen w-7/12" %>
+    <div class="bg-white flex flex-col justify-center items-center w-5/12 shadow-lg">
+      <h1 class="text-3xl font-bold text-orange-500 mb-2">Reserve a Court</h1><br>
+      <div class="w-1/2 text-center">
 
+        <%= semantic_form_for @reservation do |f| %>
+        <%= f.inputs do %>
+        <%= f.input :court_id, :as => :select, :collection => Hash[Court.all.map{|c| [c.name,c.id]}], :label => 'Court ', :required => false, :input_html => { :class => "shadow-md border w-10/12 h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded" }  %>
+        <%= f.input :player_id, :as => :select, :collection => { @current_player.name => @current_player.id }, :label => 'Player ', :required => false, :input_html => { :class => "shadow-md border w-9/12 h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded" } %>
+        <%= f.input :date, :as => :datetime_select, :label => "Date & Time", :input_html => { :class => "shadow-md border w-6/12 h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded" } %>
+        <% end %>
+        <br>
+        <%= f.action :submit, :method => :post, :label => 'Create Reservation', :button_html => { :class => "bg-orange-500 hover:bg-orange-600 text-white px-3 py-1 rounded text-lg focus:outline-none shadow btn btn-danger" }, :wrapper_html => { :style => 'list-style-type:none;' } %>
+        <% end %>
+
+      </div>
+    </div>
+  </div><br>
+
+
+  

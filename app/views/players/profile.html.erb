@@ -1,0 +1,105 @@
+
+
+
+<section class="text-gray-700 body-font overflow-hidden">
+  <div class="container px-5 py-2 mx-auto">
+    <div class="lg:w-4/5 mx-auto flex lg:pl-10 flex-wrap">
+      <div class="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
+        <h2 class="text-sm title-font text-gray-500 tracking-widest">PLAYER</h2>
+        <h1 class="text-gray-900 text-3xl title-font font-medium mb-4"><%= @player.username %></h1>
+        <div class="flex mb-4">
+          <a class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">About</a>
+          <a href="#my_reviews" class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">My Reviews</a>
+          <a href="#my_reservations"class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">My Reservations</a>
+
+        </div>
+        <p class="leading-relaxed mb-4">
+            <% if @player.about != nil || @player.about != "" %>
+                <%= @player.about %>
+            <% end%>
+        </p>
+        <div class="flex border-b border-gray-300 py-2">
+          <span class="text-gray-500 pr-4">Username</span>
+          <span class="ml-auto text-gray-900"><%= @player.username %></span>
+        </div>
+
+        <div class="flex border-b border-gray-300 py-2">
+          <span class="text-gray-500">Name</span>
+          <span class="ml-auto text-gray-900"><%= @player.name %></span>
+        </div>
+
+        <div class="flex border-b border-gray-300 py-2">
+          <span class="text-gray-500">Age</span>
+          <span class="ml-auto text-gray-900"><%= @player.age %></span>
+        </div>
+
+        <div class="flex border-b border-gray-300 py-2">
+          <span class="text-gray-500">Level</span>
+          <span class="ml-auto text-gray-900"><%= @player.level %></span>
+        </div>
+
+          <div class="flex border-b border-gray-300 py-2">
+          <span class="text-gray-500">Email</span>
+          <span class="ml-auto text-gray-900"><%= @player.email %></span>
+        </div>
+   <br>
+        <div class="flex">
+            <%= button_to "Edit Profile", edit_player_path(@player), method: "get", class:"flex ml-auto text-white bg-orange-500 border-0 py-2 px-6 focus:outline-none hover:bg-orange-600 rounded" %>
+        </div>
+      </div>
+    <% if @player.profile_picture != ""%>
+       <image src="<%= @player.profile_picture %> ", alt= "profile picture", class="pl-20" </image>
+    <% end%>
+   
+    </div>
+  </div>
+</section>
+
+<a id="my_reviews"></a>
+<a id="my_reservations"></a>
+<section class="mb-6">
+    <div class="grid grid-cols-2 justify-center mt-16">
+        <div class="md:w-full md:pr-12 md:py-8 md:border-r md:border-b-0 mb-10 md:mb-0 pb-10 border-b border-gray-300 ml-8">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">My Reviews</h1>
+        
+
+            <div class="flex mb-4 ">
+            <a class="flex-grow border-b-2 text-gray-700 border-gray-300 py-2 text-lg px-2 w-1/2">Rating</a>
+            <a class="flex-grow border-b-2 text-gray-700 border-gray-300 py-2 text-lg px-2">Review</a>
+            <a class="flex-grow border-b-2 text-gray-700 border-gray-300 py-2 text-lg px-2">Edit</a>
+            </div>
+
+            <% @player.reviews.each do |review| %>
+                <div class="flex border-b border-gray-300 py-2 ">
+                    <span class="text-gray-900 pr-12 ml-2"><%= review.rating %></span>
+                    <span class="ml-auto text-gray-900 pr-2"><%= review.review %></span>
+                    <%= button_to "Edit", edit_review_path(review), method: "get", class:" ml-auto text-white bg-orange-500 border-0 py-2 px-6 focus:outline-none hover:bg-orange-600 rounded justify-center align-center" %>
+                </div>
+            <% end %>
+        </div>
+  
+   
+        <div class="md:w-full md:pr-12 md:py-8  md:border-b-0 mb-10 md:mb-0 pb-10 border-b border-gray-300 ml-6 px-6">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">My Reservations</h1>
+        
+
+            <div class="flex mb-4 text-center">
+            <a class="flex-grow border-b-2 text-gray-700 border-gray-300 py-2 text-lg px-2 w-1/2">Park</a>
+            <a class="flex-grow border-b-2 text-gray-700 border-gray-300 py-2 text-lg px-2 w-1/2">Date</a>
+            <a class="flex-grow border-b-2 text-gray-700 border-gray-300 py-2 text-lg px-2 w-1/2">Edit</a>
+            <a class="flex-grow border-b-2 text-gray-700 border-gray-300 py-2 text-lg px-2">Delete</a>
+            </div>
+
+            <% @player.reservations.each do |reservation| %>
+                <div class="flex border-b border-gray-300 py-2 ">
+                    <span class="text-gray-900 pr-12 ml-2"><%= link_to reservation.court.name, court_path(reservation.court) %></span>
+                    <span class="ml-auto text-gray-900 pr-2"><%= reservation.date %></span>
+                    <%= button_to "Edit", edit_reservation_path(reservation), method: "get", class:" ml-auto text-white bg-orange-500 border-0 py-2 px-6 focus:outline-none hover:bg-orange-600 rounded justify-center align-center" %>
+                    <%= button_to "Delete", reservation_path(reservation), method: "delete", class:" ml-6 text-white bg-orange-500 border-0 py-2 px-6 focus:outline-none hover:bg-orange-600 rounded" %>
+                    
+                </div>
+            <% end %>
+        </div>
+    </div>
+</section>
+

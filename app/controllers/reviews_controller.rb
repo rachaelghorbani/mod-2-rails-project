@@ -16,11 +16,13 @@ class ReviewsController < ApplicationController
     end
 
     def edit
+        @current_player = Player.find_by(id: session[:player_id])
+        @court = Court.find(params[:id])
     end
 
     def update
         if @review.update(review_params)
-            redirect_to player_path(@review.player_id)
+            redirect_to profile_path(@review.player_id)
         else
             flash[:errors] = @review.errors.full_messages
             redirect_to edit_review_path(@review)

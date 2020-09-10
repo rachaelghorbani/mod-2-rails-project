@@ -1,29 +1,5 @@
-<h3>Average Court Rating: <%= @court.average_rating %></h3>
-
-<br>
-<% @court.reviews.each do |review| %>
-<p><%= review.rating %> | <%= review.review %> | <%= review.player.username %></p>
-<% end %>
-
-
-
-<br>
-<%= semantic_form_for @review do |f| %>
-<%= f.inputs do  %>
-<%= f.input :court_id, :as => :select, :collection => { @court.name => @court.id } %>
-<%= f.input :player_id, :as => :select, :collection => { @current_player.name => @current_player.id } %>
-<%= f.input :rating, :as => :select, :collection => ["1", "2", "3", "4", "5" ] %>
-<%= f.input :review, :as => :text %>
-<% end %>
-<%= f.action :submit %>
-<% end %>
-
-
-
-
-
 <section class="text-gray-700 body-font overflow-hidden">
-  <div class="container px-5 py-24 mx-auto">
+  <div class="container px-5 py-10 mx-auto">
     <div class="lg:w-4/5 mx-auto flex lg:pl-10 flex-wrap">
       <div class="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
         <h2 class="text-sm title-font text-gray-500 tracking-widest">COURT NAME</h2>
@@ -74,4 +50,53 @@
     </div>
   </div>
 </section>
-<a id="reviews">Reviews</a>
+
+<a id="reviews"></a>
+<section class="text-gray-700 body-font overflow-hidden">
+
+  <div class="container px-5 py-10 mx-auto">
+  
+    <div class="lg:w-4/5 mx-auto flex lg:pl-10 flex-wrap">
+      <div class="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
+      
+        <h1 class="text-gray-900 text-3xl title-font font-medium mb-4">Reviews</h1>
+
+        <% if @court.reviews.count != 0 %>
+            <h2 class="text-sm title-font text-gray-500 tracking-widest">AVERAGE RATING: <%= @court.average_rating %></h2>
+         <% end %>
+
+        <div class="flex mb-4">
+          <a class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">Rating</a>
+          <a class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">Review</a>
+        </div>
+
+    <% @court.reviews.each do |review| %>
+          <div class="flex border-b border-gray-300 py-2">
+          <span class="text-gray-900 pr-12"><%= review.rating %></span>
+          <span class="ml-auto text-gray-900"><%= review.review %></span>
+        </div>
+    <% end %>
+      </div>
+       <div class="lg:w-1/2 w-full pl-10 lg:py-6 mb-6 lg:mb-0 flex items-center justify-center">
+      <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=400x300&markers=size:small%7Ccolor:red%7C#{@court.latitude},#{@court.longitude}&key=#{ENV["GOOGLE_API_KEY"]}", alt: "Map" %>
+   </div>
+   
+    </div>
+  </div>
+</section>
+
+<h1 class="text-3xl font-bold flex justify-center text-orange-500 mb-2">Review a Court</h1>
+      <div class="w-auto text-center">
+          <%= semantic_form_for @review do |f| %>
+          <%= f.inputs do  %>
+          <%= f.input :court_id, :as => :select, :required => false, :label => "Court ", :collection => { @court.name => @court.id }, :input_html => { :class => "shadow-md border w-4/12 h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded" } %>
+          <%= f.input :player_id, :as => :select, :required => false, :label => "Player ", :collection => { @current_player.name => @current_player.id }, :input_html => { :class => "shadow-md border w-4/12 h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded" } %>
+          <%= f.input :rating, :as => :select, :label => "Rating ", :collection => ["1", "2", "3", "4", "5" ], :input_html => { :class => "shadow-md border w-auto h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded" } %>
+          <%= f.input :review, :label => false, :as => :text, :placeholder => "Write Review Here", :input_html => { :class => "shadow-md border w-5/12 h-24 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded" }%>
+          <% end %>
+          <%= f.action :submit, :button_html => { :class => "bg-orange-500 hover:bg-orange-600 text-white px-3 py-1 rounded text-lg focus:outline-none shadow btn btn-danger"}, :wrapper_html => { :style => 'list-style-type:none;' }  %>
+          <% end %>
+        </div>
+        <br>
+        <br>
+        <br>

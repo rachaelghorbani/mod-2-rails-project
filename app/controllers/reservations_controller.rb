@@ -24,11 +24,13 @@ class ReservationsController < ApplicationController
     end
 
     def edit
+        @current_player = Player.find_by(id: session[:player_id])
+        @court = Court.find(params[:id])
     end
 
     def update
         @reservation.update(reservations_params)
-        redirect_to player_path(@reservation.player)
+        redirect_to profile_path(@reservation.player)
     end
 
     def destroy
