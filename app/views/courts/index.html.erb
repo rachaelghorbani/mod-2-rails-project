@@ -33,17 +33,33 @@
 <!-- component -->
 <div class="md:px-32 py-8 w-full">
   <div class="shadow overflow-hidden rounded border-b border-gray-200 bg-orange-200">
-  <div>
-  <!-- component -->
-<!-- This is an example component -->
-     <div class="pt-2 relative mx-auto text-gray-600">
-        <input class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
-          type="search" name="search" placeholder="Search">
-        <button type="submit" class="absolute right-0 top-0 mt-5 mr-4">
-      
-        </button>
+    <div>
+     <div class="pt-2 relative mx-auto ml-2 text-gray-600 mb-4">
+          <%= form_with(url: courts_path, method: :get, local: true) do |f| %>
+            <%= f.text_field :court_name, class: "border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none" %>
+            <%= f.submit "Search", class:"ml-2 text-white bg-orange-500 border-0 py-2 px-4 focus:outline-none hover:bg-orange-600 rounded"%>
+        <% end %>      
       </div>
+    <div>
+        <form action="/courts">
+            <div class="inline-block relative w-64">
+            
+                <select id = "distance" name="distance" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                    <option value="">Select A Distance:</option>
+                    <option value="1 Mile">1 Mile</option>
+                    <option value="2 Miles">2 Miles</option>
+                    <option value="5 Miles">5 Miles</option>
+                </select>
+                <label>
+                <input type='submit' value="Submit" class=" ml-2 text-white bg-orange-500 border-0 py-2 px-4 focus:outline-none hover:bg-orange-600 rounded" >
+                </label>
+            </div>
+        </form>
+    </div>
+    
+
   </div>
+
     <table class="min-w-full bg-white">
       <thead class="bg-orange-500 text-white">
         <tr>

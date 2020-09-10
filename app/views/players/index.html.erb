@@ -1,17 +1,51 @@
-
-<p>Find Nearby Players to Connect With!</p>
-<%= form_with(url: players_path, method: :get, local: true) do |f|%>
-    <%= f.select :distance, ["Select A Distance:","1 Mile", "5 Miles", "10 Miles", "All Players"]%>
-    <%= f.submit "Select" %>
-<% end %>
-
-<p>Find Other Players By Level</p>
-<%= form_with(url: players_path, method: :get, local: true) do |f|%>
-    <%= f.select :player_level, ["Select A Level:","1.0", "2.0", "2.5", "3.0", "3.5", "4.0", "4.5", "5.0"]%>
-    <%= f.submit "Select" %>
-<% end %>
-
-<% @players.each do |player| %>
-<%= link_to player.username, player_path(player) %>
-<% end%>
-
+<div>
+    <form action="/players" class="">
+        <div class="inline-block relative w-2/12">
+          <label for="player_level">Find Players By Level:</label>
+            <select id = "player_level" name="player_level" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                <option value="1.0">1.0</option>
+                <option value="2.0">2.0</option>
+                <option value="2.5">2.5</option>
+                <option value="3.0">3.0</option>
+                <option value="3.5">3.5</option>
+                <option value="4.0">4.0</option>
+                <option value="4.5">4.5</option>
+                <option value="5.0">5.0</option>
+            </select>
+          <input type='submit' value="Submit">  
+        </div>
+    </form>
+</div>
+    <br>
+    <br>
+<div>
+    <form action="/players">
+        <div class="inline-block relative w-2/12">
+        <label for="distance">Find Nearby Players Nearby:</label>
+            <select id = "distance" name="distance" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                <option value="1 Mile">1 Mile</option>
+                <option value="2 Miles">2 Miles</option>
+                <option value="3 Miles">3 Miles</option>
+            </select>
+            <input type='submit' value="Submit">
+        </div>
+    </form>
+</div>
+<br>
+<br>
+    <table class="min-w-full bg-white">
+      <thead class="bg-orange-500 text-white">
+        <tr>
+          <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Name</th>
+        </tr>
+      </thead>
+    <tbody class="text-gray-700">
+    <% @players.each do |player| %>
+      <tr>
+        <td class="w-1/3 text-left py-3 px-4"><%=link_to player.name, player_path(player) %></td>
+      </tr>
+      <% end%>
+    </tbody>
+    </table>
+  </div>
+</div>
