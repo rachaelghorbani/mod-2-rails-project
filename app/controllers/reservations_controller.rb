@@ -7,6 +7,12 @@ class ReservationsController < ApplicationController
         @court = Court.find(params[:id])
     end
 
+    def reserve 
+        @reservation = Reservation.new
+        @current_player = Player.find_by(id: session[:player_id])
+        @courts = Court.all
+    end
+
     def create
             @reservation = Reservation.create(reservations_params)
         if @reservation.valid?
@@ -40,5 +46,6 @@ class ReservationsController < ApplicationController
     def find_reservation
         @reservation = Reservation.find(params[:id])
     end
+
 
 end

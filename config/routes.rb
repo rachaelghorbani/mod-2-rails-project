@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#login'
   delete '/logout/:id', to: 'sessions#logout', as: 'logout'
 
+  get '/reserve', to:'reservations#reserve', as: 'reserve'
+
   resources :reservations
   resources :players
   resources :courts
