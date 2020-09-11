@@ -23,7 +23,7 @@ class ReservationsController < ApplicationController
             redirect_to profile_path(@reservation.player_id)
         else
             flash[:errors] = @reservation.errors.full_messages
-            redirect_to court_path(@reservation.court_id)
+            redirect_to court_path(@reservation.court.id)
         end
     end
 
@@ -33,8 +33,12 @@ class ReservationsController < ApplicationController
     end
 
     def update
-        @reservation.update(reservations_params)
-        redirect_to profile_path(@reservation.player)
+        if @reservation.update(reservations_params)
+            redirect_to profile_path(@reservation.player)
+        else
+            flash[:errors] = @reservation.errors.full_full_messages
+            redirect_to edit_reservation_path(@reservation)
+        end
     end
 
     def destroy

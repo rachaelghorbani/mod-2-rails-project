@@ -9,6 +9,10 @@ class Player < ApplicationRecord
     geocoded_by :address
     after_validation :geocode
 
+    validates :name, :username, :password, :level, :address, :email, presence: true
+    validates :username, :email, uniqueness: true
+
+
     def self.player_level(player_level)
         Player.where("level like ?", "%#{player_level}%")
     end
