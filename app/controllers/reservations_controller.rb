@@ -16,7 +16,7 @@ class ReservationsController < ApplicationController
     def create
             @reservation = Reservation.create(reservations_params)
         if @reservation.valid?
-            redirect_to player_path(@reservation.player_id)
+            redirect_to profile_path(@reservation.player_id)
         else
             flash[:errors] = @reservation.errors.full_messages
             redirect_to court_path(@reservation.court_id)
