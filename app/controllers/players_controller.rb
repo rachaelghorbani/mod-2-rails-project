@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-    skip_before_action :authorized, only: [:new]
+    skip_before_action :authorized, only: [:new,  :create]
     before_action :find_player, only: [:show, :edit, :update, :destroy, :profile]
 
     def index  
@@ -59,9 +59,9 @@ class PlayersController < ApplicationController
     end
 
     def destroy
-        # @player = Player.find(params[:id])
         @player.destroy
-        redirect_to players_path
+        session.delete(:player_id)
+        redirect_to "/"
     end
 
     private

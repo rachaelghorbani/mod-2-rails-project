@@ -7,10 +7,11 @@ class ReviewsController < ApplicationController
 
     def create
             @review = Review.create(review_params)
+           
         if @review.valid?
-            redirect_to court_path(@review.court_id)
+            redirect_to court_path(@review.court.id)
         else
-            flash[:errors] = @review.errors.full_messages
+            flash[:review_error] = @review.errors.full_messages
             redirect_to court_path(@review.court_id)
         end
     end
@@ -24,7 +25,7 @@ class ReviewsController < ApplicationController
         if @review.update(review_params)
             redirect_to profile_path(@review.player_id)
         else
-            flash[:errors] = @review.errors.full_messages
+            flash[:review_errors] = @review.errors.full_messages
             redirect_to edit_review_path(@review)
         end
     end

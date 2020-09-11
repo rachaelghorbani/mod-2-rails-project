@@ -41,6 +41,13 @@
           <span class="text-gray-500">Email</span>
           <span class="ml-auto text-gray-900 underline"><%= mail_to @player.email, @player.email, subject: "Let's Hit!" %></span>
         </div>
+
+          <% if @current_player %>
+            <div class="flex border-t border-gray-300 border-b border-gray-300 py-2">
+                <span class="text-gray-500">Distance</span>
+                <span class="ml-auto text-gray-900"><%= "#{@current_player.distance_to(@player).round(2)} Miles"  %></span>
+            </div>
+        <% end%>
    <br>
       </div>
     <% if @player.profile_picture != ""%>

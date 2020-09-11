@@ -1,5 +1,5 @@
 class Player < ApplicationRecord
-    has_many :reservations
+    has_many :reservations, dependent: :destroy
     has_many :courts, through: :reservations
 
     has_many :reviews
