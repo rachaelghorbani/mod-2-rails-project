@@ -38,10 +38,18 @@
           <span class="text-gray-500">Court Type</span>
           <span class="ml-auto text-gray-900"><%= @court.court_type %></span>
         </div>
+          <% if @current_player %>
+            <div class="flex border-t border-gray-300 border-b border-gray-300 py-2">
+                <span class="text-gray-500">Distance</span>
+                <span class="ml-auto text-gray-900"><%= "#{@current_player.distance_to(@court).round(2)} Miles"  %></span>
+            </div>
+        <% end%>
         <br>
         <div class="flex">
             <%= button_to "Reserve This Court!", new_reservation_path, method: "get", params: { id: @court.id }, class:"flex ml-auto text-white bg-orange-500 border-0 py-2 px-6 focus:outline-none hover:bg-orange-600 rounded" %>
         </div>
+      
+
       </div>
 
     <div class="lg:w-1/2 w-full pl-10 lg:py-6 mb-6 lg:mb-0 flex items-center justify-center">

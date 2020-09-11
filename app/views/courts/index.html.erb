@@ -9,6 +9,7 @@
         <% end %>      
       </div>
       <%#search by distance %>
+      <% if @current_player %>
     <div class="pt-2 relative mx-auto ml-2 text-gray-600 mb-4 inline float-left">
         <form action="/courts" class="inline" >
             <div class="inline-block relative w-48">
@@ -25,6 +26,7 @@
             </div>
         </form>
     </div>
+    <% end%>
     <%#search by borough%>
 
     <div class="pt-2 relative mx-auto ml-2 text-gray-600 mb-4 inline float-left">

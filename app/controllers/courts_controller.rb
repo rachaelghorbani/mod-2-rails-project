@@ -1,7 +1,9 @@
 class CourtsController < ApplicationController
     def index
         #byebug
+        if session[:player_id]
         @current_player = Player.find(session[:player_id])
+        end
         #byebug
         # if params[:nearby] && params[:nearby] == ""
             # @judys = Court.near([@current_player.latitude, @current_player.longitude], 4, units: :mi)
