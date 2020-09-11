@@ -36,7 +36,7 @@ class PlayersController < ApplicationController
         #byebug
             if @player.valid?
                 session[:player_id] = @player.id
-                redirect_to player_path(@player)
+                redirect_to profile_path(@player)
             else
                 flash[:errors] = @player.errors.full_messages
                 redirect_to new_player_path

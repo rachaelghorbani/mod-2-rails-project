@@ -7,7 +7,7 @@
         <%= semantic_form_for @reservation do |f| %>
         <%= f.inputs do %>
         <%= f.input :court_id, :as => :select, :collection => Hash[Court.all.map{|c| [c.name,c.id]}], :label => 'Court ', :required => false, :input_html => { :class => "shadow-md border w-10/12 h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded" }  %>
-        <%= f.input :player_id, :as => :select, :collection => { @current_player.name => @current_player.id }, :label => 'Player ', :required => false, :input_html => { :class => "shadow-md border w-9/12 h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded" } %>
+        <%= f.input :player_id, :as => :select, :collection => { @current_player.name => @current_player.id }, :label => 'Player ', :required => false, :input_html => { :class => "shadow-md border w-10/12 h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded" } %>
         <%= f.input :date, :as => :datetime_select, :label => "Date & Time", :input_html => { :class => "shadow-md border w-6/12 h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded" } %>
         <% end %>
         <br>

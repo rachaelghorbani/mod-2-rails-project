@@ -11,6 +11,10 @@ class ReservationsController < ApplicationController
         @reservation = Reservation.new
         @current_player = Player.find_by(id: session[:player_id])
         @courts = Court.all
+        if !@current_player
+            redirect_to login_path
+        end
+
     end
 
     def create
@@ -36,7 +40,7 @@ class ReservationsController < ApplicationController
     def destroy
         player = @reservation.player_id
         @reservation.destroy
-        redirect_to player_path(player)
+        redirect_to profile_path(player)
     end
 
     private
