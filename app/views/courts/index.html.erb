@@ -1,51 +1,19 @@
-<p>Search By Borough:</p>
-<%= form_with(url: courts_path, method: :get, local: true) do |f|%>
-    <%= f.select :borough, ["Select A Borough:", "Bronx", "Brooklyn", "Manhattan", "Staten Island", "Queens", "All Boroughs"]%>
-    <%= f.submit "Select" %>
-<% end %>
-<p>Search By Name:</p>
-<%= form_with(url: courts_path, method: :get, local: true) do |f| %>
-    <%= f.text_field :court_name %>
-    <%= f.submit "Search" %>
-    <%# f.text_field :court_name, list: "courts autocomplete" %>
-    <!-- datalist id= "courts autocomplete"-->
-    <%# Court.all.each do |court| %> 
-    <!-- option value= "<%# court.name %>"-->
-      <%# end %>
-      <!-- /datalist -->
-<% end %>
-
-<p>Search For Nearby Courts:</p>
-<%= form_with(url: courts_path, method: :get, local: true) do |f|%>
-    <%= f.select :distance, ["Select A Distance:", "1 Mile", "2 Miles", "5 Miles",]%>
-    <%= f.submit "Select" %>
-<% end %>
-<%#  <%= button_to "Find Nearby Courts", courts_path, method: "get", params: { nearby: params[:nearby] } %>
-
-<%= button_to "All Courts", courts_path, method: "get" %>
-
-<% @courts.each do |court| %>
-    <p><%= link_to court.name, court_path(court) %> </p>
-<% end %>
-
-
-
 <!-- component -->
 <div class="md:px-32 py-8 w-full">
   <div class="shadow overflow-hidden rounded border-b border-gray-200 bg-orange-200">
     <div class="mt-2">
-     <div class="pt-2 relative mx-auto ml-2 text-gray-600 mb-4 inline">
+     <div class="pt-2 relative mx-auto ml-2 text-gray-600 mb-4 inline float-left">
           <%= form_with(url: courts_path, method: :get, local: true, class:"inline") do |f| %>
-            <%= f.text_field :court_name, class: "border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none w-32 " %>
+            <%= f.text_field :court_name, class: "border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none w-40 " %>
             <%= f.submit "Search", class:"ml-2 text-white bg-orange-500 border-0 py-2 px-4 focus:outline-none hover:bg-orange-600 rounded"%>
         <% end %>      
       </div>
       <%#search by distance %>
-    <div class="pt-2 relative mx-auto ml-2 text-gray-600 mb-4 inline">
+    <div class="pt-2 relative mx-auto ml-2 text-gray-600 mb-4 inline float-left">
         <form action="/courts" class="inline" >
             <div class="inline-block relative w-48">
             
-                <select id = "distance" name="distance" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline inline">
+                <select id = "distance" name="distance" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline inline mb-2">
                     <option value="">Select A Distance:</option>
                     <option value="1 Mile">1 Mile</option>
                     <option value="2 Miles">2 Miles</option>
@@ -59,11 +27,11 @@
     </div>
     <%#search by borough%>
 
-    <div class="pt-2 relative mx-auto ml-2 text-gray-600 mb-4 inline">
-        <form action="/courts" class="inline" >
+    <div class="pt-2 relative mx-auto ml-2 text-gray-600 mb-4 inline float-left">
+        <form action="/courts" class="inline float-left" >
             <div class="inline-block relative w-48">
             
-                <select id = "borough" name="borough" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline inline">
+                <select id = "borough" name="borough" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline inline mb-2">
                     <option value="">Select A Borough:</option>
                     <option value="Bronx">Bronx</option>
                     <option value="Brooklyn">Brooklyn</option>
@@ -79,12 +47,12 @@
             </div>
         </form>
     </div>
-     <div class="pt-2 relative mx-auto ml-2 text-gray-600 mb-4 inline">
-        <%= button_to "All Courts", courts_path, method: "get", class:" ml-2 text-white bg-orange-500 border-0 py-2 px-4 focus:outline-none hover:bg-orange-600 rounded inline-block float-right rounded mb-2" %>
+    <div class="pt-2 relative mx-auto ml-2 text-gray-600 mb-4 inline float-right mr-2">
+        <%= button_to "All Courts", courts_path, method: "get", class:"ml-2 text-white bg-orange-500 border-0 py-2 px-4 focus:outline-none hover:bg-orange-600 rounded inline-block float-right rounded mb-2 " %>
     </div>
   </div>
 
-    <table class="min-w-full bg-white">
+    <table class="min-w-full bg-orange-100">
       <thead class="bg-orange-500 text-white">
         <tr>
           <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Name</th>
