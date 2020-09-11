@@ -1,4 +1,5 @@
 class PlayersController < ApplicationController
+    skip_before_action :authorized, only: [:new]
     before_action :find_player, only: [:show, :edit, :update, :destroy, :profile]
 
     def index  
