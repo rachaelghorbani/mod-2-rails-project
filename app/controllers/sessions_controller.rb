@@ -12,7 +12,7 @@
             redirect_to profile_path(player)
         else
             flash[:error] = "Username and/or Password Incorrect"
-            redirect_to courts_path #login_path
+            redirect_to login_path #login_path
         end
     end
 
